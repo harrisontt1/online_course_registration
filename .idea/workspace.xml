@@ -4,36 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b64bec1f-2083-4342-b808-c88a9f3689cb" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/online_registration/Enrollment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/online_registration/Grade.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/online_registration/Instructor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/online_registration/Major.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/online_registration/RegistrationResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/online_registration/RegistrationSystem.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/online_registration/Term.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/online_registration/junit/TestFinancialHold.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/online_registration/junit/TestInputDataSanitization.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/online_registration/junit/TestPrerequisiteValidation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/online_registration/junit/TestSectionCapacity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/online_registration/testng/DatabaseConnectivityTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/online_registration/testng/EnrollmentFlowTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/online_registration/testng/RegistrationSystemTransactionTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/online_registration/testng/RegistrationSystemValidationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/online_registration/testng/SectionCapacityIntegrationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/online_registration/testng/TestDatabaseManager_Database.java" afterDir="false" />
+    <list default="true" id="b64bec1f-2083-4342-b808-c88a9f3689cb" name="Changes" comment="added new java classes and tests to support Junit and TestNG">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/online_registration/Course.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/EnrollmentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/online_registration/EnrollmentManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/online_registration/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/Section.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/online_registration/Section.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/SectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/online_registration/SectionManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/online_registration/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/StudentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/online_registration/StudentManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/online_registration/TestCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/online_registration/junit/TestCourse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/online_registration/TestEnrollment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/online_registration/junit/TestEnrollment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/online_registration/TestSection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/online_registration/junit/TestSection.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +47,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/harrisontt1/online_course_registration.git",
+    "accountId": "03b5bd4f-3eca-4e61-bad6-413a49282f5a"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2,
   &quot;fromUser&quot;: false
@@ -294,6 +272,15 @@
       <option name="presentableId" value="Default" />
       <updated>1783310867337</updated>
     </task>
+    <task id="LOCAL-00001" summary="added new java classes and tests to support Junit and TestNG">
+      <option name="closed" value="true" />
+      <created>1784000836339</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1784000836339</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -309,6 +296,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added new java classes and tests to support Junit and TestNG" />
+    <option name="LAST_COMMIT_MESSAGE" value="added new java classes and tests to support Junit and TestNG" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
