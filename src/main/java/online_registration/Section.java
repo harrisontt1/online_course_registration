@@ -38,7 +38,7 @@ public class Section {
 
 	/**
 	 * Rule Check 2: Dynamic validation engine placeholder for student eligibility checks.
-	 * Integrates cleanly with your DAO layer or database managers.
+	 * Integrates cleanly with the DAO layer or database managers.
 	 */
 	public boolean validateRequirements(Student student) {
 		if (student == null) {

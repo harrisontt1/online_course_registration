@@ -64,3 +64,29 @@ macOS/Linux (bash):
 - Missing .env Variables: If you encounter IllegalStateException, ensure your .env file exists in the root directory and contains both DB_USER and DB_PASSWORD.
 
 - Build Failures: Run ./gradlew clean before rebuilding to clear cached build artifacts.
+
+#### 4. Run the Application
+Once the build is successful, execute the application:
+
+Windows (PowerShell):
+````
+.\\gradlew run
+````
+
+macOS/Linux (bash):
+````
+./gradlew run
+````
+
+## Troubleshooting
+- Connection Errors: Verify your MySQL server is active and that your credentials in the .env file are accurate.
+
+- Missing .env Variables: If you encounter IllegalStateException, ensure your .env file exists in the root directory and contains both DB_USER and DB_PASSWORD.
+
+- Build Failures: Run ./gradlew clean before rebuilding to clear cached build artifacts.
+
+Passwords for Students and Admin:
+Login examples are:
+MaryWashington / Student123!
+JaneSmith / Student456! and
+AdminUser / Admin123!
