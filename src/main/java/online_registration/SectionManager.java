@@ -10,7 +10,7 @@ public class SectionManager {
 	/**
 	 * Validates inputs and attempts to add a new course section to the database.
 	 */
-	public static boolean addSection(Connection conn, int courseId, String schedule, String rawCapacity) {
+	public static boolean addSection(Connection conn, int courseId, int termId, String schedule, String rawCapacity) {
 
 		// Graceful Error Handling: Check for non-numerical or special characters before parsing
 		if (rawCapacity == null || !rawCapacity.matches("^\\d+$")) {
@@ -25,25 +25,26 @@ public class SectionManager {
 		return false;
 		}
 
-		// The secure SQL query using placeholders
-		String sql = "INSERT INTO section (course_id, schedule, capacity, enrolled_count) VALUES (?, ?, ?, 0)";
+		// Updated secure SQL query using placeholders to map term_id
+		String sql = "INSERT INTO section (course_id, term_id, schedule, capacity, enrolled_count) VALUES (?, ?, ?, ?, 0)";
 
 		// Execute the transaction
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
 		pstmt.setInt(1, courseId);
-		pstmt.setString(2, schedule);
-		pstmt.setInt(3, capacity);
+		pstmt.setInt(2, termId);
+		pstmt.setString(3, schedule);
+		pstmt.setInt(4, capacity);
 
 		int rowsAffected = pstmt.executeUpdate();
 
 		if (rowsAffected > 0) {
-		System.out.println("Success: Section added for Course ID " + courseId + " (" + schedule + ").");
+		System.out.println("Success: Section added for Course ID " + courseId + " in Term ID " + termId + " (" + schedule + ").");
 		return true;
 		}
 
 		} catch (SQLException e) {
-		System.err.println("Database Error: Could not add the section. Ensure the Course ID is valid.");
+		System.err.println("Database Error: Could not add the section. Ensure the Course ID and Term ID are valid.");
 		System.err.println("Technical Details: " + e.getMessage());
 		}
 

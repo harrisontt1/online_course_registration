@@ -10,20 +10,35 @@ repositories {
     mavenCentral()
 }
 
-/*dependencies {
-    testImplementation platform('org.junit:junit-bom:6.0.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-}*/
 dependencies {
     implementation 'com.mysql:mysql-connector-j:9.7.0'
-     implementation 'jakarta.mail:jakarta.mail-api:2.1.2'
-     implementation 'jakarta.activation:jakarta.activation-api:2.1.2'
-    // Add the dotenv library for secure credential management
+    implementation 'jakarta.mail:jakarta.mail-api:2.1.2'
+    implementation 'jakarta.activation:jakarta.activation-api:2.1.2'
     implementation 'io.github.cdimascio:dotenv-java:3.0.0'
+
+    // JUnit 5 Execution dependencies
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // TestNG Framework dependencies
+    testImplementation 'org.testng:testng:7.10.2'
 }
 
-
+// 1. Default Test Task configured strictly for JUnit 5
 test {
     useJUnitPlatform()
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+// 2. Custom isolated Task configured strictly for TestNG suites
+tasks.register('testNG', Test) {
+    useTestNG()
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
