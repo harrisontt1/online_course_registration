@@ -3,8 +3,8 @@ package online_registration.testng;
 import static org.testng.Assert.assertNotNull;
 import org.testng.annotations.Test;
 import java.sql.Connection;
-import online_registration.DatabaseManager;
-import online_registration.DBConfig;
+import com.example.registration.online_registration.DatabaseManager;
+import com.example.registration.online_registration.DBConfig;
 
 public class TestDatabaseManager_Database {
 

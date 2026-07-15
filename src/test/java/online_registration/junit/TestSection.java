@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
-import online_registration.DBConfig;
-import online_registration.DatabaseManager;
-import online_registration.SectionManager;
+import com.example.registration.online_registration.DBConfig;
+import com.example.registration.online_registration.DatabaseManager;
+import com.example.registration.online_registration.SectionManager;
 
 import java.sql.Connection;
 

@@ -1,9 +1,9 @@
 package online_registration.testng;
 
-import online_registration.RegistrationSystem;
-import online_registration.Student;
-import online_registration.Section;
-import online_registration.RegistrationResult;
+import com.example.registration.online_registration.RegistrationSystem;
+import com.example.registration.online_registration.Student;
+import com.example.registration.online_registration.Section;
+import com.example.registration.online_registration.RegistrationResult;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

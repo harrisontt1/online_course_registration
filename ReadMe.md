@@ -58,6 +58,9 @@ macOS/Linux (bash):
 ./gradlew run
 ````
 
+## Naming Convention
+
+
 ## Troubleshooting
 - Connection Errors: Verify your MySQL server is active and that your credentials in the .env file are accurate.
 
@@ -70,3 +73,5 @@ Login examples are:
 MaryWashington / Student123!
 JaneSmith / Student456! and
 AdminUser / Admin123!
+
+

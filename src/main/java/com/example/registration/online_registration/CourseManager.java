@@ -1,4 +1,4 @@
-package online_registration; // Ensure this matches your actual package name
+package com.example.registration.online_registration; // Ensure this matches your actual package name
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

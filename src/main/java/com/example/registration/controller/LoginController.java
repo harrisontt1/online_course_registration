@@ -1,0 +1,29 @@
+package com.example.registration.controller;
+
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+import com.example.registration.service.UserService;
+
+@RestController
+public class LoginController {
+
+	private final UserService userService;
+
+	public LoginController(UserService userService) {
+		this.userService = userService;
+	}
+
+	@PostMapping("/login")
+	public boolean login(@RequestBody LoginRequest request) {
+		return userService.authenticate(request.getUsername(), request.getPassword());
+	}
+
+	public static class LoginRequest {
+		private String username;
+		private String password;
+
+		public String getUsername() { return username; }
+		public String getPassword() { return password; }
+	}
+}

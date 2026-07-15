@@ -1,4 +1,4 @@
-package online_registration;
+package com.example.registration.online_registration;
 
 public class Student {
 	private int studentId;

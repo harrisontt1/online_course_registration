@@ -4,8 +4,50 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b64bec1f-2083-4342-b808-c88a9f3689cb" name="Changes" comment="added new java classes and tests to support Junit and TestNG">
+    <list default="true" id="b64bec1f-2083-4342-b808-c88a9f3689cb" name="Changes" comment="updated ReadMe.md - removed duplicate Troubleshooting section">
+      <change afterPath="$PROJECT_DIR$/docs/NamingConvention.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/References.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/TestingProcedure.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/RegistrationApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/controller/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/dao/UserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ReadMe.md" beforeDir="false" afterPath="$PROJECT_DIR$/ReadMe.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/online_registration/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/CourseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/online_registration/CourseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/DBConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/online_registration/DBConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/online_registration/DatabaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/Enrollment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/online_registration/Enrollment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/EnrollmentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/online_registration/EnrollmentManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/Grade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/online_registration/Grade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/Instructor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/online_registration/Instructor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/online_registration/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/Major.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/online_registration/Major.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/RegistrationResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/online_registration/RegistrationResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/RegistrationSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/online_registration/RegistrationSystem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/Section.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/online_registration/Section.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/SectionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/online_registration/SectionManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/online_registration/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/StudentManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/online_registration/StudentManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/online_registration/Term.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/online_registration/Term.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/online_registration/junit/TestCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/online_registration/junit/TestCourse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/online_registration/junit/TestEnrollment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/online_registration/junit/TestEnrollment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/online_registration/junit/TestFinancialHold.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/online_registration/junit/TestFinancialHold.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/online_registration/junit/TestInputDataSanitization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/online_registration/junit/TestInputDataSanitization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/online_registration/junit/TestPrerequisiteValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/online_registration/junit/TestPrerequisiteValidation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/online_registration/junit/TestSection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/online_registration/junit/TestSection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/online_registration/junit/TestSectionCapacity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/online_registration/junit/TestSectionCapacity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/online_registration/testng/EnrollmentFlowTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/online_registration/testng/EnrollmentFlowTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/online_registration/testng/RegistrationSystemTransactionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/online_registration/testng/RegistrationSystemTransactionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/online_registration/testng/RegistrationSystemValidationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/online_registration/testng/RegistrationSystemValidationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/online_registration/testng/SectionCapacityIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/online_registration/testng/SectionCapacityIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/online_registration/testng/TestDatabaseManager_Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/online_registration/testng/TestDatabaseManager_Database.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +72,16 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="online-registration" type="f1a62948:ProjectNode" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="online-registration" type="f1a62948:ProjectNode" />
+                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="online-registration" type="f1a62948:ProjectNode" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -47,12 +99,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/harrisontt1/online_course_registration.git",
-    "accountId": "03b5bd4f-3eca-4e61-bad6-413a49282f5a"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;trinhharrison&quot;
   }
-}]]></component>
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/harrisontt1/online_course_registration.git&quot;,
+    &quot;accountId&quot;: &quot;03b5bd4f-3eca-4e61-bad6-413a49282f5a&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2,
   &quot;fromUser&quot;: false
@@ -64,6 +122,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.Build online-registration.executor": "Run",
     "Gradle.DatabaseConnectivityTest (1).executor": "Run",
     "Gradle.DatabaseConnectivityTest.executor": "Run",
     "Gradle.EnrollmentFlowTest.executor": "Run",
@@ -74,8 +133,11 @@
     "Gradle.TestEnrollment.executor": "Run",
     "Gradle.TestFinancialHold.executor": "Run",
     "Gradle.TestInputDataSanitization.executor": "Run",
+    "Gradle.TestSection.executor": "Run",
     "Gradle.online-registration [:Main.main()].executor": "Run",
+    "Gradle.online-registration [:RegistrationApplication.main()].executor": "Run",
     "Gradle.online-registration [:TestDriver.main()].executor": "Run",
+    "Gradle.online-registration [:com.example.registration.RegistrationApplication.main()].executor": "Run",
     "Gradle.online-registration [:online_registration.Main.main()].executor": "Run",
     "Gradle.online-registration [:online_registration.TestCourse.main()].executor": "Run",
     "Gradle.online-registration [:online_registration.TestDriver.main()].executor": "Run",
@@ -83,11 +145,13 @@
     "Gradle.online-registration [:online_registration.TestSection.main()].executor": "Run",
     "Gradle.online-registration [:online_registration.junit.TestCourse.main()].executor": "Run",
     "Gradle.online-registration [:online_registration.junit.TestEnrollment.main()].executor": "Run",
+    "Gradle.online-registration.executor": "Coverage",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.RegistrationApplication.executor": "Run",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
@@ -96,7 +160,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.171875",
     "project.structure.side.proportion": "0.38648364",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   },
   "keyToStringList": {
     "stardust.markdown.MarkdownSplitEditorSuppressor:keyList": []
@@ -107,36 +171,23 @@
       <recent name="C:\Users\trinh\Downloads\programming-projects\online-registration" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example" />
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.DatabaseConnectivityTest">
-    <configuration name="DatabaseConnectivityTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;online_registration.testng.DatabaseConnectivityTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <GradleProfilingDisabled>false</GradleProfilingDisabled>
-      <GradleCoverageDisabled>false</GradleCoverageDisabled>
-      <method v="2" />
+  <component name="RunManager" selected="Gradle.TestCourse">
+    <configuration name="com.example.registration.RegistrationApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.registration.RegistrationApplication" />
+      <module name="online-registration.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.registration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="EnrollmentFlowTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -152,33 +203,6 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;online_registration.testng.EnrollmentFlowTest&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <ExternalSystemDebugDisabled>false</ExternalSystemDebugDisabled>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
-      <GradleProfilingDisabled>false</GradleProfilingDisabled>
-      <GradleCoverageDisabled>false</GradleCoverageDisabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="RegistrationSystemTransactionTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;online_registration.testng.RegistrationSystemTransactionTest&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -219,7 +243,7 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
-    <configuration name="TestFinancialHold" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestSection" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -232,7 +256,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;online_registration.junit.TestFinancialHold&quot;" />
+            <option value="&quot;online_registration.junit.TestSection&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -246,13 +270,27 @@
       <GradleCoverageDisabled>false</GradleCoverageDisabled>
       <method v="2" />
     </configuration>
+    <configuration name="RegistrationApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UnknownPolicyInFreeMode" />
+      <module name="online-registration.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.registration.RegistrationApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.registration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.EnrollmentFlowTest" />
-        <item itemvalue="Gradle.DatabaseConnectivityTest" />
-        <item itemvalue="Gradle.RegistrationSystemTransactionTest" />
         <item itemvalue="Gradle.TestCourse" />
-        <item itemvalue="Gradle.TestFinancialHold" />
+        <item itemvalue="Spring Boot.RegistrationApplication" />
+        <item itemvalue="Application.com.example.registration.RegistrationApplication" />
+        <item itemvalue="Gradle.TestSection" />
+        <item itemvalue="Gradle.EnrollmentFlowTest" />
       </list>
     </recent_temporary>
   </component>
@@ -280,7 +318,31 @@
       <option name="project" value="LOCAL" />
       <updated>1784000836339</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added new java classes and tests to support Junit and TestNG">
+      <option name="closed" value="true" />
+      <created>1784001489917</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1784001489917</updated>
+    </task>
+    <task id="LOCAL-00003" summary="updated ReadMe.md">
+      <option name="closed" value="true" />
+      <created>1784003805129</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1784003805129</updated>
+    </task>
+    <task id="LOCAL-00004" summary="updated ReadMe.md - removed duplicate Troubleshooting section">
+      <option name="closed" value="true" />
+      <created>1784004225289</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1784004225289</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -299,17 +361,26 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added new java classes and tests to support Junit and TestNG" />
-    <option name="LAST_COMMIT_MESSAGE" value="added new java classes and tests to support Junit and TestNG" />
+    <MESSAGE value="updated ReadMe.md" />
+    <MESSAGE value="updated ReadMe.md - removed duplicate Troubleshooting section" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated ReadMe.md - removed duplicate Troubleshooting section" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/example/Main.java</url>
+          <url>file://$PROJECT_DIR$/src/main/java/com/example/registration/Main.java</url>
           <line>13</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/online_registration$online_registration.ic" NAME="online-registration Coverage Results" MODIFIED="1784039870828" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>

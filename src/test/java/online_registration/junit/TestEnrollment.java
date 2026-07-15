@@ -3,7 +3,7 @@ package online_registration.junit;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import online_registration.EnrollmentManager;
+import com.example.registration.online_registration.EnrollmentManager;
 
 public class TestEnrollment {
 
