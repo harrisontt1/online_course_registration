@@ -1,7 +1,9 @@
 package com.example.registration.online_registration;
 
 import io.github.cdimascio.dotenv.Dotenv;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DBConfig {
 
 	// Initialize Dotenv gracefully. 'ignoreIfMissing()' allows it to fall back to system variables on a live server.

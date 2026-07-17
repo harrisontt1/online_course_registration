@@ -13,7 +13,7 @@ public class UserDAO {
 	}
 
 	public boolean authenticate(String username, String password) {
-		String sql = "SELECT COUNT(*) FROM users WHERE username = ? AND password = ?";
+		String sql = "SELECT COUNT(*) FROM `user` WHERE username = ? AND password = ?";
 		Integer count = jdbc.queryForObject(sql, Integer.class, username, password);
 		return count != null && count == 1;
 	}

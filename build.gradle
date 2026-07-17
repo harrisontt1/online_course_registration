@@ -12,10 +12,11 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.mysql:mysql-connector-j:9.7.0'
     implementation 'jakarta.mail:jakarta.mail-api:2.1.2'
     implementation 'jakarta.activation:jakarta.activation-api:2.1.2'
     implementation 'io.github.cdimascio:dotenv-java:3.0.0'
+
+    implementation 'me.paulschwarz:spring-dotenv:2.5.4'
 
     // JUnit 5 Execution dependencies
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
@@ -26,9 +27,10 @@ dependencies {
     testImplementation 'org.testng:testng:7.10.2'
 
     // springboot
-    implementation 'org.springframework.boot:spring-boot-starter'
+    // implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+
     implementation 'mysql:mysql-connector-java:8.0.33'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
