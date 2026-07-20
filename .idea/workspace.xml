@@ -4,35 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b64bec1f-2083-4342-b808-c88a9f3689cb" name="Changes" comment="Enabled Spring-managed lifecycle for DBConfig and introduced DataSourceConfig to provide a reliable MySQL datasource&#10;&#10;Resolved Spring Boot startup failures related to JDBC initialization&#10;&#10;Validated complete authentication workflow from controller through DAO to the database&#10;&#10;Confirmed correct login behavior using external Postman testing (no client code included)">
-      <changelist_data name="Trinh Harrison" email="indidiblue@gmail.com" automatic="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/controller/CourseController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/controller/FinancialController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/controller/RegistrationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/controller/StudentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/model/Course.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/model/FinancialStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/model/RegistrationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/model/Student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/service/CourseService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/service/FinancialService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/service/RegistrationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/service/StudentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/course.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/dashboard.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/financial.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/course.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/dashboard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/financial.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/registration.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/registration.html" afterDir="false" />
+    <list default="true" id="b64bec1f-2083-4342-b808-c88a9f3689cb" name="Changes" comment="Restructured folders to support spring boot; added docs folder, Naming Convention, References and RegistrationApplication.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/controller/EnrollmentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/online_registration/DataSourceConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/registration/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/registration/dao/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/dao/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/registration/online_registration/DBConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/online_registration/DBConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,10 +58,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Class" />
-        <option value="JavaScript File" />
-        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -99,9 +77,6 @@
     &quot;accountId&quot;: &quot;03b5bd4f-3eca-4e61-bad6-413a49282f5a&quot;
   }
 }</component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2,
   &quot;fromUser&quot;: false
@@ -111,65 +86,54 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Gradle.Build online-registration.executor": "Run",
-    "Gradle.DatabaseConnectivityTest (1).executor": "Run",
-    "Gradle.DatabaseConnectivityTest.executor": "Run",
-    "Gradle.EnrollmentFlowTest.executor": "Run",
-    "Gradle.RegistrationSystemTransactionTest.executor": "Debug",
-    "Gradle.RegistrationSystemValidationTest.executor": "Run",
-    "Gradle.SectionCapacityIntegrationTest.executor": "Run",
-    "Gradle.TestCourse.executor": "Run",
-    "Gradle.TestEnrollment.executor": "Run",
-    "Gradle.TestFinancialHold.executor": "Run",
-    "Gradle.TestInputDataSanitization.executor": "Run",
-    "Gradle.TestSection.executor": "Run",
-    "Gradle.online-registration [:Main.main()].executor": "Run",
-    "Gradle.online-registration [:RegistrationApplication.main()].executor": "Run",
-    "Gradle.online-registration [:TestDriver.main()].executor": "Run",
-    "Gradle.online-registration [:com.example.registration.RegistrationApplication.main()].executor": "Run",
-    "Gradle.online-registration [:online_registration.Main.main()].executor": "Run",
-    "Gradle.online-registration [:online_registration.TestCourse.main()].executor": "Run",
-    "Gradle.online-registration [:online_registration.TestDriver.main()].executor": "Run",
-    "Gradle.online-registration [:online_registration.TestEnrollment.main()].executor": "Run",
-    "Gradle.online-registration [:online_registration.TestSection.main()].executor": "Run",
-    "Gradle.online-registration [:online_registration.junit.TestCourse.main()].executor": "Run",
-    "Gradle.online-registration [:online_registration.junit.TestEnrollment.main()].executor": "Run",
-    "Gradle.online-registration.executor": "Coverage",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "Spring Boot.RegistrationApplication.executor": "Run",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/trinh/Downloads/programming-projects/online-registration/src/main/resources/static/js",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.jshint": "true",
-    "node.js.selected.package.jshint": "",
-    "nodejs_package_manager_path": "npm",
-    "onboarding.tips.debug.path": "C:/Users/trinh/Downloads/programming-projects/online-registration/src/main/java/com/example/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.171875",
-    "project.structure.side.proportion": "0.38648364",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build online-registration.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.DatabaseConnectivityTest (1).executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.DatabaseConnectivityTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.EnrollmentFlowTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.RegistrationSystemTransactionTest.executor&quot;: &quot;Debug&quot;,
+    &quot;Gradle.RegistrationSystemValidationTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.SectionCapacityIntegrationTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestCourse.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestEnrollment.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestFinancialHold.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestInputDataSanitization.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.TestSection.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.online-registration [:Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.online-registration [:RegistrationApplication.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.online-registration [:TestDriver.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.online-registration [:com.example.registration.RegistrationApplication.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.online-registration [:online_registration.Main.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.online-registration [:online_registration.TestCourse.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.online-registration [:online_registration.TestDriver.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.online-registration [:online_registration.TestEnrollment.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.online-registration [:online_registration.TestSection.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.online-registration [:online_registration.junit.TestCourse.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.online-registration [:online_registration.junit.TestEnrollment.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.online-registration.executor&quot;: &quot;Coverage&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;Spring Boot.RegistrationApplication.executor&quot;: &quot;Run&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/trinh/Downloads/programming-projects/online-registration/src/main/java/com/example/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.171875&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.38648364&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   },
-  "keyToStringList": {
-    "stardust.markdown.MarkdownSplitEditorSuppressor:keyList": []
+  &quot;keyToStringList&quot;: {
+    &quot;stardust.markdown.MarkdownSplitEditorSuppressor:keyList&quot;: []
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\trinh\Downloads\programming-projects\online-registration\src\main\resources\static\js" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\trinh\Downloads\programming-projects\online-registration\src\main\resources\js" />
-      <recent name="C:\Users\trinh\Downloads\programming-projects\online-registration\src\main\resources\static\js" />
-      <recent name="C:\Users\trinh\Downloads\programming-projects\online-registration\src\main\resources\static" />
       <recent name="C:\Users\trinh\Downloads\programming-projects\online-registration" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -352,15 +316,7 @@
       <option name="project" value="LOCAL" />
       <updated>1784087510117</updated>
     </task>
-    <task id="LOCAL-00006" summary="Enabled Spring-managed lifecycle for DBConfig and introduced DataSourceConfig to provide a reliable MySQL datasource&#10;&#10;Resolved Spring Boot startup failures related to JDBC initialization&#10;&#10;Validated complete authentication workflow from controller through DAO to the database&#10;&#10;Confirmed correct login behavior using external Postman testing (no client code included)">
-      <option name="closed" value="true" />
-      <created>1784309603508</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1784309603508</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -382,9 +338,7 @@
     <MESSAGE value="updated ReadMe.md" />
     <MESSAGE value="updated ReadMe.md - removed duplicate Troubleshooting section" />
     <MESSAGE value="Restructured folders to support spring boot; added docs folder, Naming Convention, References and RegistrationApplication." />
-    <MESSAGE value="feat: integrate classmate frontend into Spring Boot backend and complete Student Persona workflow&#10;&#10;Summary of work completed:&#10;Integrated classmate’s Student Persona HTML/CSS into Spring Boot static resources&#10;&#10;Connected login page to backend authentication and validated successful login&#10;&#10;Implemented sessionStorage‑based authentication guard for the Student Persona dashboard&#10;&#10;Refactored dashboard.js to fetch student profile, registration count, and financial status from backend endpoints&#10;&#10;Unified DOM element IDs and naming conventions between HTML and JS&#10;&#10;Added logout functionality with session clearing and redirect to login page&#10;&#10;Cleaned dashboard HTML structure, removed duplicate scripts, and restored documentation blocks&#10;&#10;Ensured consistent styling using shared stylesheet and card layout&#10;&#10;Verified end‑to‑end integration between Student Persona UI and backend REST API routes" />
-    <MESSAGE value="Enabled Spring-managed lifecycle for DBConfig and introduced DataSourceConfig to provide a reliable MySQL datasource&#10;&#10;Resolved Spring Boot startup failures related to JDBC initialization&#10;&#10;Validated complete authentication workflow from controller through DAO to the database&#10;&#10;Confirmed correct login behavior using external Postman testing (no client code included)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Enabled Spring-managed lifecycle for DBConfig and introduced DataSourceConfig to provide a reliable MySQL datasource&#10;&#10;Resolved Spring Boot startup failures related to JDBC initialization&#10;&#10;Validated complete authentication workflow from controller through DAO to the database&#10;&#10;Confirmed correct login behavior using external Postman testing (no client code included)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Restructured folders to support spring boot; added docs folder, Naming Convention, References and RegistrationApplication." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
