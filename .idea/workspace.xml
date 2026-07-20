@@ -4,9 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b64bec1f-2083-4342-b808-c88a9f3689cb" name="Changes" comment="rebase to restore July 19 code">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates" beforeDir="false" />
+    <list default="true" id="b64bec1f-2083-4342-b808-c88a9f3689cb" name="Changes" comment="restructure static folder">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/course.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/dashboard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/financial.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/course.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/dashboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/financial.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/login.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/registration.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,10 +61,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Class" />
-        <option value="JavaScript File" />
+        <option value="HTML File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -347,7 +357,23 @@
       <option name="project" value="LOCAL" />
       <updated>1784558745141</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="restructure static folder">
+      <option name="closed" value="true" />
+      <created>1784560278687</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1784560278687</updated>
+    </task>
+    <task id="LOCAL-00009" summary="restructure static folder">
+      <option name="closed" value="true" />
+      <created>1784560315899</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1784560315899</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -372,7 +398,8 @@
     <MESSAGE value="feat: integrate classmate frontend into Spring Boot backend and complete Student Persona workflow&#10;&#10;Summary of work completed:&#10;Integrated classmate’s Student Persona HTML/CSS into Spring Boot static resources&#10;&#10;Connected login page to backend authentication and validated successful login&#10;&#10;Implemented sessionStorage‑based authentication guard for the Student Persona dashboard&#10;&#10;Refactored dashboard.js to fetch student profile, registration count, and financial status from backend endpoints&#10;&#10;Unified DOM element IDs and naming conventions between HTML and JS&#10;&#10;Added logout functionality with session clearing and redirect to login page&#10;&#10;Cleaned dashboard HTML structure, removed duplicate scripts, and restored documentation blocks&#10;&#10;Ensured consistent styling using shared stylesheet and card layout&#10;&#10;Verified end‑to‑end integration between Student Persona UI and backend REST API routes" />
     <MESSAGE value="Enabled Spring-managed lifecycle for DBConfig and introduced DataSourceConfig to provide a reliable MySQL datasource&#10;&#10;Resolved Spring Boot startup failures related to JDBC initialization&#10;&#10;Validated complete authentication workflow from controller through DAO to the database&#10;&#10;Confirmed correct login behavior using external Postman testing (no client code included)" />
     <MESSAGE value="rebase to restore July 19 code" />
-    <option name="LAST_COMMIT_MESSAGE" value="rebase to restore July 19 code" />
+    <MESSAGE value="restructure static folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="restructure static folder" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
