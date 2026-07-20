@@ -1,0 +1,83 @@
+<!--
+    login.html
+
+    Provides the student-facing login interface. This page is the
+    entry point for the Student Persona workflow and works together
+    with login.js to authenticate the student and initialize the
+    session state.
+
+    Student Persona Component:
+    - Allows the student to enter username and password
+    - Sends credentials to /api/login via login.js
+    - Displays authentication errors
+    - Redirects to dashboard.html upon successful login
+
+    Data Flow:
+    - login.js listens for form submission
+    - login.js sends POST /api/login with:
+        {
+            "username": "<entered>",
+            "password": "<entered>"
+        }
+    - Backend returns true/false
+    - login.js stores username in sessionStorage
+    - login.js redirects to dashboard.html
+
+    Current Implementation Notes:
+    - No password masking beyond HTML input type
+    - No "Forgot Password" workflow
+    - No role-based access (student/admin)
+    - Styling provided by css/styles.css
+
+    Future Enhancements:
+    - Add password recovery workflow
+    - Add password visibility toggle
+    - Add client-side validation (min length, allowed characters)
+    - Add loading indicator during authentication
+    - Add support for JWT tokens instead of sessionStorage
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+
+    <!--
+        login.js handles:
+        - Form submission
+        - Authentication request
+        - Session initialization
+        - Redirect to dashboard
+    -->
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/login.js" defer></script>
+</head>
+
+<body>
+<header>
+    <h1>Online Course Registration</h1>
+</header>
+
+<main>
+    <section id="login-section">
+        <h2>Login</h2>
+
+        <form id="login-form">
+            <label>Username:
+                <input type="text" id="username" required>
+            </label>
+
+            <label>Password:
+                <input type="password" id="password" required>
+            </label>
+
+            <button type="submit">Login</button>
+        </form>
+        <!--
+            login.js writes authentication errors here.
+        -->
+        <p id="login-error" class="error-message"></p>
+    </section>
+</main>
+</body>
+</html>
