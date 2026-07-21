@@ -44,28 +44,14 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-
-    /**
-     * Attach submit handler to the login form.
-     */
     const form = document.getElementById("login-form");
 
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
-        /**
-         * Retrieve username and password from input fields.
-         */
         const username = document.getElementById("username").value;
         const password = document.getElementById("password").value;
 
-        /**
-         * Send authentication request to backend.
-         *
-         * Expected backend response:
-         * true  → login successful
-         * false → login failed
-         */
         try {
             const response = await fetch("/api/login", {
                 method: "POST",
@@ -75,21 +61,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const result = await response.json();
 
-            if (result === true) {
-                /**
-                 * Store username so dashboard, course, registration,
-                 * and financial pages can validate the session.
-                 */
+            if (result.success === true) {
                 sessionStorage.setItem("username", username);
-                // Redirect to dashboard on successful login
-                window.location.href = "dashboard.html";
+                sessionStorage.setItem("role", result.role);
+
+                if (result.role === "admin") {
+                    window.location.href = "admin-dashboard.html";
+                } else {
+                    window.location.href = "dashboard.html";
+                }
             } else {
-                // Display login failure message
                 document.getElementById("login-error").textContent =
                     "Invalid username or password.";
             }
         } catch (error) {
-            // Display server connection error
             document.getElementById("login-error").textContent =
                 "Unable to connect to server.";
         }
