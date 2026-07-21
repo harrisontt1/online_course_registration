@@ -4,18 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b64bec1f-2083-4342-b808-c88a9f3689cb" name="Changes" comment="added controllers">
+    <list default="true" id="b64bec1f-2083-4342-b808-c88a9f3689cb" name="Changes" comment="updated javascript and added html pages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/TestConnections.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/TestConnections.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/course.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/course.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/styles.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/dashboard.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/financial.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/financial.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/course.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/course.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/dashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/registration.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/registration.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/registration.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -388,7 +380,15 @@
       <option name="project" value="LOCAL" />
       <updated>1784599850007</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="updated javascript and added html pages">
+      <option name="closed" value="true" />
+      <created>1784601591472</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1784601591472</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -416,7 +416,8 @@
     <MESSAGE value="restructure static folder" />
     <MESSAGE value="added new folders to static resources" />
     <MESSAGE value="added controllers" />
-    <option name="LAST_COMMIT_MESSAGE" value="added controllers" />
+    <MESSAGE value="updated javascript and added html pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated javascript and added html pages" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
