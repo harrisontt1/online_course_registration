@@ -48,13 +48,16 @@
         - Displaying success/failure messages
     -->
     <link rel="stylesheet" href="css/styles.css">
+    <script src="js/logout.js" defer></script>
     <script src="js/registration.js" defer></script>
 </head>
 
 <body>
-<header>
+<header class="page-header">
     <h1>Course Registration</h1>
+    <button class="logout-button" onclick="logoutUser()">Logout</button>
 </header>
+
 
 <!--
     Navigation bar for Student Persona pages.
@@ -69,27 +72,48 @@
 </nav>
 
 <main>
-    <section id="registration-section">
-        <h2>Register for a Course</h2>
+    <section>
+        <h2>Available Courses</h2>
 
         <!--
             Registration form:
-            - Student enters a Course ID manually
+            - Student selects a Course manually
             - registration.js intercepts form submission
             - registration.js sends POST /api/registration
         -->
-        <form id="registration-form">
-            <label>Course ID:
-                <input type="text" id="course-id" required>
-            </label>
+        <table>
+            <thead>
+            <tr>
+                <th>Course ID</th>
+                <th>Name</th>
+                <th>Instructor</th>
+                <th>Credits</th>
+                <th>Meeting Time</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody id="registration-table-body"></tbody>
+        </table>
 
-            <button type="submit">Register</button>
-        </form>
-
-        <!--
-            registration.js writes success/failure messages here.
-        -->
         <p id="registration-message"></p>
+    </section>
+
+    <section>
+        <h2>My Registered Courses</h2>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Course ID</th>
+                <th>Name</th>
+                <th>Instructor</th>
+                <th>Credits</th>
+                <th>Meeting Time</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody id="registered-course-table-body"></tbody>
+        </table>
     </section>
 </main>
 </body>
