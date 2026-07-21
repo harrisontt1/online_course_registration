@@ -4,7 +4,9 @@ import com.example.registration.model.Course;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Service layer responsible for managing student course registrations.
@@ -26,6 +28,7 @@ import java.util.List;
  *     <li>Registrations are stored in-memory and reset on application restart</li>
  *     <li>Course details are stubbed for development purposes</li>
  *     <li>No validation is performed on duplicate registrations</li>
+ *     <li>Email notification previews are created for registration outcomes</li>
  * </ul>
  *
  * <p><strong>Future Enhancements:</strong></p>
@@ -39,8 +42,30 @@ import java.util.List;
 @Service
 public class RegistrationService {
 
-	// Temporary in-memory storage until database integration
-	private final List<Course> registeredCourses = new ArrayList<>();
+    private final Map<String, List<Course>> studentRegistrations = new HashMap<>();
+    private final Map<String, Integer> courseEnrollmentCounts = new HashMap<>();
+    private final Map<String, Integer> courseCapacityLimits = new HashMap<>();
+    private final EmailNotificationService emailNotificationService;
+
+    /**
+     * Constructor for dependency injection of EmailNotificationService.
+     *
+     * @param emailNotificationService service used to prepare email notifications
+     */
+
+        public RegistrationService(EmailNotificationService emailNotificationService) {
+        this.emailNotificationService = emailNotificationService;
+
+        /*
+         * Sample maximum course capacities.
+         * These can be adjusted later if the team connects capacity to MySQL.
+         */
+        courseCapacityLimits.put("CMSC495", 2);
+        courseCapacityLimits.put("CMSC451", 2);
+
+        courseEnrollmentCounts.put("CMSC495", 0);
+        courseEnrollmentCounts.put("CMSC451", 0);
+	}
 
 	/**
 	 * Registers a student for a course.
@@ -51,33 +76,221 @@ public class RegistrationService {
 	 *
 	 * @param username the student's username
 	 * @param courseId the ID of the course to register for
-	 * @return {@code true} if registration succeeds
+	 * @return {@code true} if registration succeeds false otherwise
 	 */
-	public boolean registerStudent(String username, String courseId) {
-		// TODO: Replace with real database lookup and validation
-		Course course = new Course(
-				courseId,
-				"Placeholder Course",
-				"Instructor",
-				3,
-				"MWF 10AM"
-		);
-		registeredCourses.add(course);
-		return true;
-	}
 
-	/**
-	 * Retrieves all courses registered by a specific student.
-	 *
-	 * <p>In the current implementation, registrations are not stored per
-	 * student. This method returns the global list of registered courses
-	 * for demonstration purposes.</p>
-	 *
-	 * @param username the student's username
-	 * @return list of registered courses
-	 */
-	public List<Course> getCoursesForStudent(String username) {
-		// TODO: Replace with per-student registration lookup
-		return registeredCourses;
-	}
+  public boolean registerStudent(String username, String courseId) {
+        Course course = buildCourseFromId(courseId);
+
+        if (course == null) {
+            emailNotificationService.sendNotification(
+                    username,
+                    "Course Registration Failed",
+                    "Registration failed because course " + courseId + " was not found."
+            );
+
+            return false;
+        }
+
+        if (isAlreadyRegistered(username, courseId)) {
+            emailNotificationService.sendNotification(
+                    username,
+                    "Course Registration Failed",
+                    "Registration failed because you are already registered for " + courseId + "."
+            );
+
+            return false;
+        }
+
+        if (!hasMetPrerequisites(username, courseId)) {
+            emailNotificationService.sendNotification(
+                    username,
+                    "Course Registration Failed",
+                    "Cannot add " + courseId + " due to Prerequisite not met: CMSC 345."
+            );
+
+            return false;
+        }
+
+        if (isCourseFull(courseId)) {
+            emailNotificationService.sendNotification(
+                    username,
+                    "Course Registration Failed",
+                    "Registration failed because " + courseId + " has reached maximum student capacity."
+            );
+
+            return false;
+        }
+
+        studentRegistrations
+                .computeIfAbsent(username, key -> new ArrayList<>())
+                .add(course);
+
+        courseEnrollmentCounts.put(
+                courseId.toUpperCase(),
+                courseEnrollmentCounts.getOrDefault(courseId.toUpperCase(), 0) + 1
+        );
+
+        emailNotificationService.sendNotification(
+                username,
+                "Course Registration Confirmation",
+                "You have successfully registered for " + course.getId() + " - " + course.getName() + "."
+        );
+
+        return true;
+    }
+
+    /**
+     * Withdraws a student from a registered course.
+     *
+     * @param username the student's username
+     * @param courseId the ID of the course to withdraw from
+     * @return true if withdrawal succeeds, false otherwise
+     */
+    public boolean withdrawStudent(String username, String courseId) {
+        List<Course> registeredCourses = studentRegistrations.get(username);
+
+        if (registeredCourses == null || registeredCourses.isEmpty()) {
+            emailNotificationService.sendNotification(
+                    username,
+                    "Course Withdrawal Failed",
+                    "Withdrawal failed because you are not registered for " + courseId + "."
+            );
+
+            return false;
+        }
+
+        Course courseToRemove = null;
+
+        for (Course course : registeredCourses) {
+            if (course.getId().equalsIgnoreCase(courseId)) {
+                courseToRemove = course;
+                break;
+            }
+        }
+
+        if (courseToRemove == null) {
+            emailNotificationService.sendNotification(
+                    username,
+                    "Course Withdrawal Failed",
+                    "Withdrawal failed because " + courseId + " was not found in your registered courses."
+            );
+
+            return false;
+        }
+
+        registeredCourses.remove(courseToRemove);
+
+        String normalizedCourseId = courseId.toUpperCase();
+        int currentCount = courseEnrollmentCounts.getOrDefault(normalizedCourseId, 0);
+
+        if (currentCount > 0) {
+            courseEnrollmentCounts.put(normalizedCourseId, currentCount - 1);
+        }
+
+        emailNotificationService.sendNotification(
+                username,
+                "Course Withdrawal Confirmation",
+                "You have successfully withdrawn from " + courseToRemove.getId() + " - " + courseToRemove.getName() + "."
+        );
+
+        return true;
+    }
+
+    /**
+     * Retrieves all courses registered by a specific student.
+     *
+     * @param username the student's username
+     * @return list of registered courses
+     */
+    public List<Course> getCoursesForStudent(String username) {
+        return studentRegistrations.getOrDefault(username, new ArrayList<>());
+    }
+
+    /**
+     * Checks whether the student is already registered for a course.
+     *
+     * @param username the student's username
+     * @param courseId the course ID to check
+     * @return true if already registered, false otherwise
+     */
+    private boolean isAlreadyRegistered(String username, String courseId) {
+        List<Course> registeredCourses = studentRegistrations.get(username);
+
+        if (registeredCourses == null) {
+            return false;
+        }
+
+        for (Course course : registeredCourses) {
+            if (course.getId().equalsIgnoreCase(courseId)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Checks whether the selected course has reached capacity.
+     *
+     * @param courseId the course ID to check
+     * @return true if course is full, false otherwise
+     */
+    private boolean isCourseFull(String courseId) {
+        String normalizedCourseId = courseId.toUpperCase();
+
+        int enrolledCount = courseEnrollmentCounts.getOrDefault(normalizedCourseId, 0);
+        int capacityLimit = courseCapacityLimits.getOrDefault(normalizedCourseId, 30);
+
+        return enrolledCount >= capacityLimit;
+    }
+
+    /**
+     * Validates prerequisite rules for selected courses.
+     *
+     * <p>MaryWashington has not completed CMSC 345, so she cannot
+     * register for CMSC495. JaneSmith is allowed to register for CMSC495.</p>
+     *
+     * @param username the student's username
+     * @param courseId the selected course ID
+     * @return true if prerequisites are met, false otherwise
+     */
+    private boolean hasMetPrerequisites(String username, String courseId) {
+        if (courseId.equalsIgnoreCase("CMSC495")
+                && username.equalsIgnoreCase("MaryWashington")) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Creates course information for known sample courses.
+     *
+     * @param courseId the selected course ID
+     * @return Course object if found, otherwise null
+     */
+    private Course buildCourseFromId(String courseId) {
+        if (courseId.equalsIgnoreCase("CMSC495")) {
+            return new Course(
+                    "CMSC495",
+                    "Capstone",
+                    "Dr. Smith",
+                    3,
+                    "MWF 10AM"
+            );
+        }
+
+        if (courseId.equalsIgnoreCase("CMSC451")) {
+            return new Course(
+                    "CMSC451",
+                    "Algorithms",
+                    "Dr. Lee",
+                    3,
+                    "TTh 2PM"
+            );
+        }
+
+        return null;
+    }
 }
