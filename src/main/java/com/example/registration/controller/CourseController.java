@@ -26,19 +26,29 @@ import java.util.List;
 @RequestMapping("/api/course")
 public class CourseController {
 
-	private final CourseService courseService;
+    private final CourseService courseService;
 
-	public CourseController(CourseService courseService) {
-		this.courseService = courseService;
-	}
+    public CourseController(CourseService courseService) {
+        this.courseService = courseService;
+    }
 
-	/**
-	 * Retrieves all available course objects.
-	 *
-	 * @return list of {@link Course} objects
-	 */
-	@GetMapping
-	public List<Course> getAllCourse() {
-		return courseService.getAllCourse();
-	}
+    @GetMapping
+    public List<Course> getAllCourse() {
+        return courseService.getAllCourse();
+    }
+
+    @PostMapping
+    public boolean addCourse(@RequestBody Course course) {
+        return courseService.addCourse(course);
+    }
+
+    @PutMapping("/{courseId}")
+    public boolean updateCourse(@PathVariable String courseId, @RequestBody Course course) {
+        return courseService.updateCourse(courseId, course);
+    }
+
+    @DeleteMapping("/{courseId}")
+    public boolean deleteCourse(@PathVariable String courseId) {
+        return courseService.deleteCourse(courseId);
+    }
 }
