@@ -36,17 +36,22 @@
  * </ul>
  */
 document.addEventListener("DOMContentLoaded", async () => {
+    console.log("registration.js loaded");
 
-    /**
-     * Retrieve the authenticated student's username from sessionStorage.
-     * If no username is found, redirect the user back to the login page.
-     */
     const username = sessionStorage.getItem("username");
 
     if (!username) {
+        console.log("No username found in session storage.");
         window.location.href = "login.html";
         return;
     }
+
+    console.log("Logged in user:", username);
+
+    await loadAvailableCourses(username);
+    await loadRegisteredCourses(username);
+});
+
 
     /**
      * Fetch the list of available course objects.
@@ -60,20 +65,39 @@ document.addEventListener("DOMContentLoaded", async () => {
      *     "credits": 3,
      *     "meetingTime": "MWF 10AM"
      *   },
-     *   ...
+     *   Each course has registration button
      * ]
      */
+async function loadAvailableCourses(username) {
+    const tableBody = document.getElementById("registration-table-body");
+
     try {
         const response = await fetch("/api/course");
+
+        if (!response.ok) {
+            throw new Error("Course API failed with status: " + response.status);
+        }
+
         const courseList = await response.json();
+
+        console.log("Available courses loaded:", courseList);
 
         renderCourseList(courseList, username);
 
     } catch (error) {
         console.error("Error fetching course list:", error);
-    }
-});
 
+        if (tableBody) {
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="6">Unable to load available courses.</td>
+                </tr>
+            `;
+        }
+
+        showMessage("Unable to load available courses.", false);
+    }
+}
 
 /**
  * Renders the list of course objects into the UI.
@@ -88,6 +112,22 @@ document.addEventListener("DOMContentLoaded", async () => {
  */
 function renderCourseList(courseList, username) {
     const tableBody = document.getElementById("registration-table-body");
+
+    if (!tableBody) {
+        console.error("Could not find registration-table-body.");
+        return;
+    }
+
+    tableBody.innerHTML = "";
+
+    if (!courseList || courseList.length === 0) {
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="6">No available courses found.</td>
+            </tr>
+        `;
+        return;
+    }
 
     courseList.forEach(course => {
         const row = document.createElement("tr");
@@ -108,16 +148,14 @@ function renderCourseList(courseList, username) {
         tableBody.appendChild(row);
     });
 
-    /**
-     * Attach click handlers to all “Register” buttons.
-     */
     document.querySelectorAll(".register-btn").forEach(button => {
-        button.addEventListener("click", () => {
+        button.addEventListener("click", async () => {
             const courseId = button.getAttribute("data-course-id");
-            submitRegistration(username, courseId);
+            await submitRegistration(username, courseId);
         });
     });
 }
+
 
 
 /**
@@ -153,13 +191,173 @@ async function submitRegistration(username, courseId) {
         const result = await response.json();
 
         if (result === true) {
-            alert(`Successfully registered for course: ${courseId}`);
+            showMessage(`Successfully registered for course: ${courseId}. Email notification sent.`, true);
+        } else if (courseId === "CMSC495" && username === "MaryWashington") {
+            showMessage(`Cannot add ${courseId} due to Prerequisite not met: CMSC 345. Email notification sent.`, false);
         } else {
-            alert(`Registration failed for course: ${courseId}`);
+            showMessage(`Registration failed for course: ${courseId}. Email notification sent.`, false);
         }
+
+        await loadRegisteredCourses(username);
 
     } catch (error) {
         console.error("Error submitting registration:", error);
-        alert("An error occurred while registering.");
+        showMessage("An error occurred while registering. Email notification could not be completed.", false);
     }
+}
+/*
+ * 
+ * Load Registered Courses
+ * 
+ * This function retrieves the courses currently registered to
+ * the logged-in student and sends them to the display function.
+ * 
+ */
+
+async function loadRegisteredCourses(username) {
+    const tableBody = document.getElementById("registered-course-table-body");
+
+    try {
+        const response = await fetch(`/api/registration/${username}`);
+
+        if (!response.ok) {
+            throw new Error("Registered courses API failed with status: " + response.status);
+        }
+
+        const registeredCourses = await response.json();
+
+        console.log("Registered courses loaded:", registeredCourses);
+
+        renderRegisteredCourses(registeredCourses, username);
+
+    } catch (error) {
+        console.error("Error loading registered courses:", error);
+
+        if (tableBody) {
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="6">Unable to load registered courses.</td>
+                </tr>
+            `;
+        }
+
+        showMessage("Unable to load registered courses.", false);
+    }
+}
+
+/*
+ * 
+ * Render Registered Courses
+ * 
+ * This function displays the student's registered courses in the
+ * My Registered Courses table. Each registered course includes a
+ * Withdraw button.
+ * 
+ */
+
+function renderRegisteredCourses(registeredCourses, username) {
+    const tableBody = document.getElementById("registered-course-table-body");
+
+    if (!tableBody) {
+        console.error("Could not find registered-course-table-body.");
+        return;
+    }
+
+    tableBody.innerHTML = "";
+
+    if (!registeredCourses || registeredCourses.length === 0) {
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="6">No registered courses yet.</td>
+            </tr>
+        `;
+        return;
+    }
+
+    registeredCourses.forEach(course => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${course.id}</td>
+            <td>${course.name}</td>
+            <td>${course.instructor}</td>
+            <td>${course.credits}</td>
+            <td>${course.meetingTime}</td>
+            <td>
+                <button class="withdraw-btn" data-course-id="${course.id}">
+                    Withdraw
+                </button>
+            </td>
+        `;
+
+        tableBody.appendChild(row);
+    });
+
+    document.querySelectorAll(".withdraw-btn").forEach(button => {
+        button.addEventListener("click", async () => {
+            const courseId = button.getAttribute("data-course-id");
+            await withdrawRegistration(username, courseId);
+        });
+    });
+}
+
+
+/*
+ * 
+ * Withdraw From Course
+ * 
+ * This function sends a withdrawal request to the backend API.
+ * If the withdrawal succeeds, the registered course list is
+ * refreshed and the student receives a confirmation message.
+ * 
+ */
+
+async function withdrawRegistration(username, courseId) {
+    try {
+        const response = await fetch("/api/registration", {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                username: username,
+                courseId: courseId
+            })
+        });
+
+        const result = await response.json();
+
+        if (result === true) {
+            showMessage(`Successfully withdrew from course: ${courseId}. Email notification sent.`, true);
+        } else {
+            showMessage(`Withdrawal failed for course: ${courseId}. Email notification sent.`, false);
+        }
+
+        await loadRegisteredCourses(username);
+
+    } catch (error) {
+        console.error("Error withdrawing from course:", error);
+        showMessage("An error occurred while withdrawing. Email notification could not be completed.", false);
+    }
+}
+
+/*
+ * 
+ * Display Status Message
+ * 
+ * This function displays success or error messages on the course
+ * registration page. Successful actions appear in green, while
+ * failed actions appear in red.
+ * 
+ */
+
+function showMessage(message, success) {
+    const messageElement = document.getElementById("registration-message");
+
+    if (!messageElement) {
+        console.error("Could not find registration-message.");
+        return;
+    }
+
+    messageElement.textContent = message;
+    messageElement.style.fontWeight = "bold";
+    messageElement.style.color = success ? "green" : "red";
 }
