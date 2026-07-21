@@ -23,23 +23,107 @@ import java.util.List;
 @Service
 public class CourseService {
 
-	/**
-	 * Temporary in-memory list of course objects.
-	 */
-	private final List<Course> courseList = new ArrayList<>();
+    private final List<Course> courseList = new ArrayList<>();
 
-	public CourseService() {
-		// Placeholder course objects
-		courseList.add(new Course("CMSC495", "Capstone", "Dr. Smith", 3, "MWF 10AM"));
-		courseList.add(new Course("CMSC451", "Algorithms", "Dr. Lee", 3, "TTh 2PM"));
-	}
+    public CourseService() {
+        courseList.add(new Course(
+                "CMSC495",
+                "Capstone",
+                "Dr. Smith",
+                3,
+                "MWF 10AM",
+                2,
+                0,
+                "CMSC345"
+        ));
 
-	/**
-	 * Retrieves all available course objects.
-	 *
-	 * @return list of {@link Course} objects
-	 */
-	public List<Course> getAllCourse() {
-		return courseList;
-	}
+        courseList.add(new Course(
+                "CMSC451",
+                "Algorithms",
+                "Dr. Lee",
+                3,
+                "TTh 2PM",
+                2,
+                0,
+                ""
+        ));
+    }
+
+    public List<Course> getAllCourse() {
+        return courseList;
+    }
+
+    public boolean addCourse(Course course) {
+        if (findCourseById(course.getId()) != null) {
+            return false;
+        }
+
+        course.setEnrolledCount(0);
+        courseList.add(course);
+        return true;
+    }
+
+    public boolean updateCourse(String courseId, Course updatedCourse) {
+        Course existingCourse = findCourseById(courseId);
+
+        if (existingCourse == null) {
+            return false;
+        }
+
+        existingCourse.setName(updatedCourse.getName());
+        existingCourse.setInstructor(updatedCourse.getInstructor());
+        existingCourse.setCredits(updatedCourse.getCredits());
+        existingCourse.setMeetingTime(updatedCourse.getMeetingTime());
+        existingCourse.setMaxCapacity(updatedCourse.getMaxCapacity());
+        existingCourse.setPrerequisiteCourseId(updatedCourse.getPrerequisiteCourseId());
+
+        return true;
+    }
+
+    public boolean deleteCourse(String courseId) {
+        Course existingCourse = findCourseById(courseId);
+
+        if (existingCourse == null) {
+            return false;
+        }
+
+        courseList.remove(existingCourse);
+        return true;
+    }
+
+    public Course findCourseById(String courseId) {
+        for (Course course : courseList) {
+            if (course.getId().equalsIgnoreCase(courseId)) {
+                return course;
+            }
+        }
+
+        return null;
+    }
+
+    public boolean hasAvailableSeat(String courseId) {
+        Course course = findCourseById(courseId);
+
+        if (course == null) {
+            return false;
+        }
+
+        return course.getEnrolledCount() < course.getMaxCapacity();
+    }
+
+    public void increaseEnrollment(String courseId) {
+        Course course = findCourseById(courseId);
+
+        if (course != null) {
+            course.setEnrolledCount(course.getEnrolledCount() + 1);
+        }
+    }
+
+    public void decreaseEnrollment(String courseId) {
+        Course course = findCourseById(courseId);
+
+        if (course != null && course.getEnrolledCount() > 0) {
+            course.setEnrolledCount(course.getEnrolledCount() - 1);
+        }
+    }
 }
