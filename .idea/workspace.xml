@@ -4,19 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b64bec1f-2083-4342-b808-c88a9f3689cb" name="Changes" comment="restructure static folder">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/course.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/dashboard.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/financial.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/course.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/dashboard.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/financial.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/login.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/registration.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/registration.html" afterDir="false" />
+    <list default="true" id="b64bec1f-2083-4342-b808-c88a9f3689cb" name="Changes" comment="added new folders to static resources">
+      <change afterPath="$PROJECT_DIR$/docs/TestConnections.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/admin-dashboard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/admin-login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/js/admin-login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/registration/controller/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/controllers/CourseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/registration/controller/EnrollmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/controllers/EnrollmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/registration/controller/FinancialController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/controllers/FinancialController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/registration/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/registration/controller/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/controllers/RegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/registration/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/controllers/StudentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/registration/model/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/models/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/registration/model/FinancialStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/models/FinancialStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/registration/model/RegistrationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/models/RegistrationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/registration/model/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/models/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/registration/service/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/services/CourseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/registration/service/FinancialService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/services/FinancialService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/registration/service/RegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/services/RegistrationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/registration/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/services/StudentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/registration/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/registration/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/dashboard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,9 +72,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="HTML File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -373,7 +383,15 @@
       <option name="project" value="LOCAL" />
       <updated>1784560315899</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="added new folders to static resources">
+      <option name="closed" value="true" />
+      <created>1784561989540</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1784561989540</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -399,7 +417,8 @@
     <MESSAGE value="Enabled Spring-managed lifecycle for DBConfig and introduced DataSourceConfig to provide a reliable MySQL datasource&#10;&#10;Resolved Spring Boot startup failures related to JDBC initialization&#10;&#10;Validated complete authentication workflow from controller through DAO to the database&#10;&#10;Confirmed correct login behavior using external Postman testing (no client code included)" />
     <MESSAGE value="rebase to restore July 19 code" />
     <MESSAGE value="restructure static folder" />
-    <option name="LAST_COMMIT_MESSAGE" value="restructure static folder" />
+    <MESSAGE value="added new folders to static resources" />
+    <option name="LAST_COMMIT_MESSAGE" value="added new folders to static resources" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

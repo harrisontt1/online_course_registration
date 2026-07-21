@@ -2,7 +2,7 @@ package com.example.registration.controller;
 
 import org.springframework.web.bind.annotation.*;
 import com.example.registration.model.FinancialStatus;
-import com.example.registration.service.FinancialService;
+import com.example.registration.services.FinancialService;
 
 /**
  * Controller responsible for exposing student financial/account status

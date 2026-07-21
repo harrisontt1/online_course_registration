@@ -1,4 +1,4 @@
-package com.example.registration.service;
+package com.example.registration.services;
 
 import com.example.registration.model.FinancialStatus;
 import org.springframework.stereotype.Service;

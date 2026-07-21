@@ -1,4 +1,4 @@
-package com.example.registration.service;
+package com.example.registration.services;
 
 import org.springframework.stereotype.Service;
 import com.example.registration.dao.UserDAO;
