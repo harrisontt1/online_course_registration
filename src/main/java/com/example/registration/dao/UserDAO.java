@@ -17,4 +17,14 @@ public class UserDAO {
 		Integer count = jdbc.queryForObject(sql, Integer.class, username, password);
 		return count != null && count == 1;
 	}
+
+    	public String getRole(String username, String password) {
+       		 String sql = "SELECT role FROM `user` WHERE username = ? AND password = ?";
+
+       		 try {
+            		return jdbc.queryForObject(sql, String.class, username, password);
+       		 } catch (Exception e) {
+     		       return null;
+     		   }
+  	  }
 }
