@@ -1,78 +1,120 @@
-/**
-* financial.js
-*
-* Handles the student financial/account status workflow. This script
-* ensures that only authenticated students can access the page,
-* retrieves the student's financial information from the backend,
-* and displays the result on financial.html.
-*
-* <p><strong>Student Persona Component:</strong></p>
-* <ul>
-    *   <li>Validates student session using sessionStorage</li>
-    *   <li>Fetches financial/account status from backend</li>
-    *   <li>Displays account status on the Financial page</li>
-    *   <li>Prevents access unless the student is logged in</li>
-    * </ul>
-*
-* <p><strong>Data Flow:</strong></p>
-* <ul>
-    *   <li>financial.js checks sessionStorage for username</li>
-    *   <li>If missing → redirect to login.html</li>
-    *   <li>financial.js sends GET /api/financial/{username}</li>
-    *   <li>Backend returns JSON containing financial status</li>
-    *   <li>financial.js writes the status into #financial-status-text</li>
-    * </ul>
-*
-* <p><strong>Current Implementation Notes:</strong></p>
-* <ul>
-    *   <li>Assumes backend returns a simple JSON object</li>
-    *   <li>Uses fetch() for API communication</li>
-    *   <li>Displays errors directly on the page</li>
-    * </ul>
-*
-* <p><strong>Future Enhancements:</strong></p>
-* <ul>
-    *   <li>Add detailed breakdown (tuition, fees, payments)</li>
-    *   <li>Add payment history section</li>
-    *   <li>Add alerts for overdue balances or holds</li>
-    *   <li>Add link to online payment portal</li>
-    * </ul>
-*/
+<!--financial.html
 
-document.addEventListener("DOMContentLoaded", async () => {
+    Financial Status Page
+    ----------------------
+    Displays the student's current financial status for the Online Course Registration System.
+    This page relies on:
+        - financial.js for fetching data from /api/financial/{studentId}
+        - styles.css for layout and styling
+-->
 
-/**
-* Validate session: ensure the student is logged in.
-*/
-const username = sessionStorage.getItem("username");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Financial Status - Online Course Registration</title>
 
-if (!username) {
-window.location.href = "login.html";
-return;
-}
+<!-- Global stylesheet for all pages -->
+<link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+<!--
+    Page Header
+    -----------
+    Provides the title and basic navigation back to the dashboard.
+-->
+<header class="page-header">
+    <h1>Financial Status</h1>
+    <nav class="nav-bar">
+        <a href="/static/dashboard.html">Dashboard</a>
+        <a href="/static/course.html">Courses</a>
+        <a href="/static/registration.html">Registration</a>
+        <a href="/static/financial.html" class="active">Financial</a>
+        <a href="/static/login.html">Logout</a>
+    </nav>
+</header>
 
-/**
-* Fetch the student's financial/account status.
-*
-* Expected backend response:
-* {
-*   "status": "Paid in full"
-* }
-*/
-try {
-const response = await fetch(`/api/financial/${username}`);
-const financialData = await response.json();
+<!--
+    Main Content Area
+    -----------------
+    Contains the financial summary for the currently logged-in student.
+    The content is populated dynamically by financial.js.
+-->
+<main class="content">
+    <!-- Container for student financial information -->
+    <section id="financial-summary" class="card">
+        <h2>Account Summary</h2>
 
-/**
-* Write the financial status into the page.
-*/
-document.getElementById("financial-status-text").textContent =
-financialData.status;
+        <!--
+            These fields are populated by financial.js using data from
+            /api/financial/{studentId}.
+        -->
+        <div class="financial-row">
+            <span class="label">Student Name:</span>
+            <span id="student-name" class="value">Loading...</span>
+        </div>
 
-} catch (error) {
-console.error("Error fetching financial status:", error);
+        <div class="financial-row">
+            <span class="label">Total Tuition:</span>
+            <span id="total-tuition" class="value">Loading...</span>
+        </div>
 
-document.getElementById("financial-status-text").textContent =
-"Unable to retrieve financial information.";
-}
-});
+        <div class="financial-row">
+            <span class="label">Amount Paid:</span>
+            <span id="amount-paid" class="value">Loading...</span>
+        </div>
+
+        <div class="financial-row">
+            <span class="label">Outstanding Balance:</span>
+            <span id="outstanding-balance" class="value">Loading...</span>
+        </div>
+
+        <div class="financial-row">
+            <span class="label">Payment Status:</span>
+            <span id="payment-status" class="value status">Loading...</span>
+        </div>
+    </section>
+
+    <!--
+        Optional transaction history section.
+        Populated by financial.js if the backend provides a list of
+        payments or charges.
+    -->
+    <section id="transaction-history" class="card">
+        <h2>Transaction History</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount</th>
+            </tr>
+            </thead>
+            <tbody id="transaction-table-body">
+            <!-- Rows inserted dynamically by financial.js -->
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<!--
+    Page Footer
+    -----------
+    Simple footer for branding or additional links.
+-->
+<footer class="page-footer">
+    <p>&copy; 2026 Online Course Registration System</p>
+</footer>
+
+<!--
+    JavaScript
+    ----------
+    financial.js is responsible for:
+    - Determining the current student (from localStorage or query params)
+    - Calling /api/financial/{studentId}
+    - Populating the fields above with returned JSON data
+    - Rendering transaction history if available
+-->
+<script src="/static/js/financial.js"></script>
+</body>
+</html>

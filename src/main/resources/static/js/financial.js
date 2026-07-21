@@ -1,0 +1,78 @@
+/**
+ * financial.js
+ *
+ * Handles the student financial/account status workflow. This script
+ * ensures that only authenticated students can access the page,
+ * retrieves the student's financial information from the backend,
+ * and displays the result on financial.html.
+ *
+ * <p><strong>Student Persona Component:</strong></p>
+ * <ul>
+ *   <li>Validates student session using sessionStorage</li>
+ *   <li>Fetches financial/account status from backend</li>
+ *   <li>Displays account status on the Financial page</li>
+ *   <li>Prevents access unless the student is logged in</li>
+ * </ul>
+ *
+ * <p><strong>Data Flow:</strong></p>
+ * <ul>
+ *   <li>financial.js checks sessionStorage for username</li>
+ *   <li>If missing → redirect to login.html</li>
+ *   <li>financial.js sends GET /api/financial/{username}</li>
+ *   <li>Backend returns JSON containing financial status</li>
+ *   <li>financial.js writes the status into #financial-status-text</li>
+ * </ul>
+ *
+ * <p><strong>Current Implementation Notes:</strong></p>
+ * <ul>
+ *   <li>Assumes backend returns a simple JSON object</li>
+ *   <li>Uses fetch() for API communication</li>
+ *   <li>Displays errors directly on the page</li>
+ * </ul>
+ *
+ * <p><strong>Future Enhancements:</strong></p>
+ * <ul>
+ *   <li>Add detailed breakdown (tuition, fees, payments)</li>
+ *   <li>Add payment history section</li>
+ *   <li>Add alerts for overdue balances or holds</li>
+ *   <li>Add link to online payment portal</li>
+ * </ul>
+ */
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+    /**
+     * Validate session: ensure the student is logged in.
+     */
+    const username = sessionStorage.getItem("username");
+
+    if (!username) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    /**
+     * Fetch the student's financial/account status.
+     *
+     * Expected backend response:
+     * {
+     *   "status": "Paid in full"
+     * }
+     */
+    try {
+        const response = await fetch(`/api/financial/${username}`);
+        const financialData = await response.json();
+
+        /**
+         * Write the financial status into the page.
+         */
+        document.getElementById("financial-status-text").textContent =
+            financialData.status;
+
+    } catch (error) {
+        console.error("Error fetching financial status:", error);
+
+        document.getElementById("financial-status-text").textContent =
+            "Unable to retrieve financial information.";
+    }
+});

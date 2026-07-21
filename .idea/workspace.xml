@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b64bec1f-2083-4342-b808-c88a9f3689cb" name="Changes" comment="updated javascript and added html pages">
+    <list default="true" id="b64bec1f-2083-4342-b808-c88a9f3689cb" name="Changes" comment="added student dashboard page and style sheet.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/dashboard.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/TestingProcedure.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/TestingProcedures.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/financial.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/financial.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/js/financial.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/js/financial.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -388,7 +390,15 @@
       <option name="project" value="LOCAL" />
       <updated>1784601591472</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="added student dashboard page and style sheet.">
+      <option name="closed" value="true" />
+      <created>1784602211657</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1784602211657</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -417,7 +427,8 @@
     <MESSAGE value="added new folders to static resources" />
     <MESSAGE value="added controllers" />
     <MESSAGE value="updated javascript and added html pages" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated javascript and added html pages" />
+    <MESSAGE value="added student dashboard page and style sheet." />
+    <option name="LAST_COMMIT_MESSAGE" value="added student dashboard page and style sheet." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
