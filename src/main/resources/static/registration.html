@@ -1,10 +1,99 @@
+<!--
+    registration.html
+
+    Provides the student-facing interface for registering for a single
+    course object. This page is part of the Student Persona workflow
+    and works together with registration.js to submit registration
+    requests to the backend.
+
+    Student Persona Component:
+    - Allows the student to manually enter a Course ID
+    - Submits a registration request through registration.js
+    - Displays success or failure messages
+    - Prevents access unless the student is logged in (handled in JS)
+    - Provides navigation to other persona pages (Dashboard, Course, Financial)
+
+    Data Flow:
+    - registration.js validates authentication via sessionStorage
+    - registration.js listens for form submission
+    - registration.js sends POST /api/registration with:
+        {
+            "username": "<student>",
+            "courseId": "<entered value>"
+        }
+    - registration.js updates #registration-message with the result
+
+    Current Implementation Notes:
+    - Course ID entry is manual (no dropdown or course list)
+    - Form submission is intercepted by registration.js
+    - Styling is provided by css/styles.css
+    - Navigation bar provides consistent persona navigation
+
+    Future Enhancements:
+    - Replace manual Course ID entry with a dropdown of course objects
+    - Add validation to ensure Course ID exists before submission
+    - Add confirmation modal before registration
+    - Add schedule conflict detection
+    - Add credit limit validation
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+    <title>Course Registration</title>
 
+    <!--
+        registration.js handles:
+        - Authentication check
+        - Form submission
+        - Sending registration request to backend
+        - Displaying success/failure messages
+    -->
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/registration.js" defer></script>
+</head>
+
+<body>
+<header>
+    <h1>Course Registration</h1>
+</header>
+
+<!--
+    Navigation bar for Student Persona pages.
+    Ensures consistent movement between dashboard, course list, and financial status.
+-->
+<nav>
+    <ul>
+        <li><a href="dashboard.html">Dashboard</a></li>
+        <li><a href="course.html">Courses</a></li>
+        <li><a href="financial.html">Financial</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section id="registration-section">
+        <h2>Register for a Course</h2>
+
+        <!--
+            Registration form:
+            - Student enters a Course ID manually
+            - registration.js intercepts form submission
+            - registration.js sends POST /api/registration
+        -->
+        <form id="registration-form">
+            <label>Course ID:
+                <input type="text" id="course-id" required>
+            </label>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <!--
+            registration.js writes success/failure messages here.
+        -->
+        <p id="registration-message"></p>
+    </section>
+</main>
 </body>
 </html>
