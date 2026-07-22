@@ -19,6 +19,8 @@ public class Course {
     private String meetingTime;
     private int maxCapacity;
     private int enrolledCount;
+    private String prerequisiteCourseId;
+
 	/**
 	 * Constructs a Course object.
 	 * Represents a single course object in the course catalog.
@@ -30,11 +32,11 @@ public class Course {
 	 * @param credits     number of credits
 	 * @param meetingTime scheduled meeting time
 	 */
-   public Course() {
+    public Course() {
     }
 
     /**
-     * Constructor used by existing course setup code.
+     * Constructor used by the original course setup code.
      *
      * @param id course ID
      * @param name course name
@@ -50,6 +52,7 @@ public class Course {
         this.meetingTime = meetingTime;
         this.maxCapacity = 2;
         this.enrolledCount = 0;
+        this.prerequisiteCourseId = "";
     }
 
     /**
@@ -63,8 +66,33 @@ public class Course {
      * @param maxCapacity maximum number of students allowed
      * @param enrolledCount current number of enrolled students
      */
+public Course(String id, String name, String instructor, int credits,
+                  String meetingTime, int maxCapacity, String prerequisiteCourseId) {
+        this.id = id;
+        this.name = name;
+        this.instructor = instructor;
+        this.credits = credits;
+        this.meetingTime = meetingTime;
+        this.maxCapacity = maxCapacity;
+        this.enrolledCount = 0;
+        this.prerequisiteCourseId = prerequisiteCourseId;
+    }
+
+    /**
+     * Constructor used when capacity, enrolled count, and prerequisite are included.
+     *
+     * @param id course ID
+     * @param name course name
+     * @param instructor course instructor
+     * @param credits number of credits
+     * @param meetingTime meeting time
+     * @param maxCapacity maximum number of students allowed
+     * @param enrolledCount current number of enrolled students
+     * @param prerequisiteCourseId prerequisite course ID
+     */
     public Course(String id, String name, String instructor, int credits,
-                  String meetingTime, int maxCapacity, int enrolledCount) {
+                  String meetingTime, int maxCapacity, int enrolledCount,
+                  String prerequisiteCourseId) {
         this.id = id;
         this.name = name;
         this.instructor = instructor;
@@ -72,6 +100,7 @@ public class Course {
         this.meetingTime = meetingTime;
         this.maxCapacity = maxCapacity;
         this.enrolledCount = enrolledCount;
+        this.prerequisiteCourseId = prerequisiteCourseId;
     }
 
     public String getId() {
@@ -128,5 +157,13 @@ public class Course {
 
     public void setEnrolledCount(int enrolledCount) {
         this.enrolledCount = enrolledCount;
+    }
+
+    public String getPrerequisiteCourseId() {
+        return prerequisiteCourseId;
+    }
+
+    public void setPrerequisiteCourseId(String prerequisiteCourseId) {
+        this.prerequisiteCourseId = prerequisiteCourseId;
     }
 }
