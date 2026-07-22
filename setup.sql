@@ -38,3 +38,21 @@ CREATE TABLE enrollment (
 -- 3. Insert baseline data
 INSERT INTO course (title, description, credits)
 VALUES ('Introduction to Computer Science', 'Foundational concepts.', 3);
+
+-- 4. Create Login Users
+
+CREATE TABLE IF NOT EXISTS `user` (
+    user_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    role VARCHAR(20) NOT NULL
+);
+
+INSERT INTO `user` (username, password, role)
+VALUES
+('MaryWashington', 'Student123!', 'student'),
+('JaneSmith', 'Student456!', 'student'),
+('AdminUser', 'Admin123!', 'admin')
+ON DUPLICATE KEY UPDATE
+password = VALUES(password),
+role = VALUES(role);
