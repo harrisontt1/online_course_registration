@@ -35,25 +35,40 @@
  *   <li>Add ability to deregister from a course</li>
  * </ul>
  */
-document.addEventListener("DOMContentLoaded", async () => {
-    console.log("registration.js loaded");
+let availableCourses = [];
 
+document.addEventListener("DOMContentLoaded", async () => {
     const username = sessionStorage.getItem("username");
+    const role = sessionStorage.getItem("role");
 
     if (!username) {
-        console.log("No username found in session storage.");
         window.location.href = "login.html";
         return;
     }
 
-    console.log("Logged in user:", username);
+    if (role === "admin") {
+        window.location.href = "admin-dashboard.html";
+        return;
+    }
 
     await loadAvailableCourses(username);
     await loadRegisteredCourses(username);
+
+    const searchInput = document.getElementById("course-search");
+
+    searchInput.addEventListener("input", () => {
+        const searchValue = searchInput.value.toLowerCase();
+
+        const filteredCourses = availableCourses.filter(course =>
+            course.id.toLowerCase().includes(searchValue) ||
+            course.name.toLowerCase().includes(searchValue)
+        );
+
+        renderCourseList(filteredCourses, username);
+    });
 });
 
-
-    /**
+  /**
      * Fetch the list of available course objects.
      *
      * Expected JSON:
@@ -68,6 +83,7 @@ document.addEventListener("DOMContentLoaded", async () => {
      *   Each course has registration button
      * ]
      */
+
 async function loadAvailableCourses(username) {
     const tableBody = document.getElementById("registration-table-body");
 
@@ -78,11 +94,9 @@ async function loadAvailableCourses(username) {
             throw new Error("Course API failed with status: " + response.status);
         }
 
-        const courseList = await response.json();
+        availableCourses = await response.json();
 
-        console.log("Available courses loaded:", courseList);
-
-        renderCourseList(courseList, username);
+        renderCourseList(availableCourses, username);
 
     } catch (error) {
         console.error("Error fetching course list:", error);
@@ -90,7 +104,7 @@ async function loadAvailableCourses(username) {
         if (tableBody) {
             tableBody.innerHTML = `
                 <tr>
-                    <td colspan="6">Unable to load available courses.</td>
+                    <td colspan="8">Unable to load available courses.</td>
                 </tr>
             `;
         }
@@ -110,6 +124,7 @@ async function loadAvailableCourses(username) {
  * @param {Array<Object>} courseList - List of course objects
  * @param {string} username - The authenticated student's username
  */
+
 function renderCourseList(courseList, username) {
     const tableBody = document.getElementById("registration-table-body");
 
@@ -123,13 +138,20 @@ function renderCourseList(courseList, username) {
     if (!courseList || courseList.length === 0) {
         tableBody.innerHTML = `
             <tr>
-                <td colspan="6">No available courses found.</td>
+                <td colspan="8">No available courses found.</td>
             </tr>
         `;
         return;
     }
 
     courseList.forEach(course => {
+        const maxCapacity = course.maxCapacity || 0;
+        const enrolledCount = course.enrolledCount || 0;
+        const seatsAvailable = Math.max(maxCapacity - enrolledCount, 0);
+        const prerequisite = course.prerequisiteCourseId && course.prerequisiteCourseId.trim() !== ""
+            ? formatCourseId(course.prerequisiteCourseId)
+            : "None";
+
         const row = document.createElement("tr");
 
         row.innerHTML = `
@@ -138,6 +160,8 @@ function renderCourseList(courseList, username) {
             <td>${course.instructor}</td>
             <td>${course.credits}</td>
             <td>${course.meetingTime}</td>
+            <td>${seatsAvailable} / ${maxCapacity}</td>
+            <td>${prerequisite}</td>
             <td>
                 <button class="register-btn" data-course-id="${course.id}">
                     Register
@@ -155,8 +179,6 @@ function renderCourseList(courseList, username) {
         });
     });
 }
-
-
 
 /**
  * Submits a registration request to the backend.
@@ -177,6 +199,7 @@ function renderCourseList(courseList, username) {
  * @param {string} username - The student's username
  * @param {string} courseId - The ID of the course to register for
  */
+
 async function submitRegistration(username, courseId) {
     try {
         const response = await fetch("/api/registration", {
@@ -190,14 +213,9 @@ async function submitRegistration(username, courseId) {
 
         const result = await response.json();
 
-        if (result === true) {
-            showMessage(`Successfully registered for course: ${courseId}. Email notification sent.`, true);
-        } else if (courseId === "CMSC495" && username === "MaryWashington") {
-            showMessage(`Cannot add ${courseId} due to Prerequisite not met: CMSC 345. Email notification sent.`, false);
-        } else {
-            showMessage(`Registration failed for course: ${courseId}. Email notification sent.`, false);
-        }
+        showMessage(result.message + " Email notification sent.", result.success);
 
+        await loadAvailableCourses(username);
         await loadRegisteredCourses(username);
 
     } catch (error) {
@@ -205,6 +223,7 @@ async function submitRegistration(username, courseId) {
         showMessage("An error occurred while registering. Email notification could not be completed.", false);
     }
 }
+
 /*
  * 
  * Load Registered Courses
@@ -225,8 +244,6 @@ async function loadRegisteredCourses(username) {
         }
 
         const registeredCourses = await response.json();
-
-        console.log("Registered courses loaded:", registeredCourses);
 
         renderRegisteredCourses(registeredCourses, username);
 
@@ -301,7 +318,6 @@ function renderRegisteredCourses(registeredCourses, username) {
     });
 }
 
-
 /*
  * 
  * Withdraw From Course
@@ -325,12 +341,9 @@ async function withdrawRegistration(username, courseId) {
 
         const result = await response.json();
 
-        if (result === true) {
-            showMessage(`Successfully withdrew from course: ${courseId}. Email notification sent.`, true);
-        } else {
-            showMessage(`Withdrawal failed for course: ${courseId}. Email notification sent.`, false);
-        }
+        showMessage(result.message + " Email notification sent.", result.success);
 
+        await loadAvailableCourses(username);
         await loadRegisteredCourses(username);
 
     } catch (error) {
@@ -360,4 +373,12 @@ function showMessage(message, success) {
     messageElement.textContent = message;
     messageElement.style.fontWeight = "bold";
     messageElement.style.color = success ? "green" : "red";
+}
+
+function formatCourseId(courseId) {
+    if (!courseId) {
+        return "None";
+    }
+
+    return courseId.replace(/([A-Z]+)([0-9]+)/, "$1 $2");
 }
