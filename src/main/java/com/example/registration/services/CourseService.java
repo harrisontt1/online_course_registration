@@ -7,24 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Service layer responsible for retrieving available course objects.
+ * Service layer responsible for managing course data.
  *
- * <p>This class provides backend logic used by the CourseController
- * to supply the Course page with the current course catalog. The
- * implementation is currently stubbed for development and will be
- * replaced with database integration in future iterations.</p>
- *
- * <p><strong>Student Persona Component:</strong></p>
- * <ul>
- *     <li>Supplies course objects to course.js</li>
- *     <li>Acts as the backend source of truth for course catalog data</li>
- * </ul>
+ * <p>This class stores the available courses, supports administrator
+ * add/update/delete actions, tracks enrollment counts, and provides
+ * course lookup methods used by the registration process.</p>
  */
 @Service
 public class CourseService {
 
     private final List<Course> courseList = new ArrayList<>();
 
+    /**
+     * Creates the sample courses used by the application.
+     */
     public CourseService() {
         courseList.add(new Course(
                 "CMSC495",
@@ -49,20 +45,43 @@ public class CourseService {
         ));
     }
 
+    /**
+     * Retrieves all available courses.
+     *
+     * @return list of all courses
+     */
     public List<Course> getAllCourse() {
         return courseList;
     }
 
+    /**
+     * Adds a new course if the course ID does not already exist.
+     *
+     * @param course course to add
+     * @return true if course is added, false if duplicate ID exists
+     */
     public boolean addCourse(Course course) {
         if (findCourseById(course.getId()) != null) {
             return false;
         }
 
+        if (course.getMaxCapacity() <= 0) {
+            course.setMaxCapacity(2);
+        }
+
         course.setEnrolledCount(0);
         courseList.add(course);
+
         return true;
     }
 
+    /**
+     * Updates an existing course.
+     *
+     * @param courseId course ID to update
+     * @param updatedCourse updated course information
+     * @return true if updated, false if course was not found
+     */
     public boolean updateCourse(String courseId, Course updatedCourse) {
         Course existingCourse = findCourseById(courseId);
 
@@ -80,6 +99,12 @@ public class CourseService {
         return true;
     }
 
+    /**
+     * Deletes a course if it exists.
+     *
+     * @param courseId course ID to delete
+     * @return true if deleted, false if course was not found
+     */
     public boolean deleteCourse(String courseId) {
         Course existingCourse = findCourseById(courseId);
 
@@ -88,19 +113,16 @@ public class CourseService {
         }
 
         courseList.remove(existingCourse);
+
         return true;
     }
 
-    public Course findCourseById(String courseId) {
-        for (Course course : courseList) {
-            if (course.getId().equalsIgnoreCase(courseId)) {
-                return course;
-            }
-        }
-
-        return null;
-    }
-
+    /**
+     * Checks if a course has at least one available seat.
+     *
+     * @param courseId course ID to check
+     * @return true if seat is available, false otherwise
+     */
     public boolean hasAvailableSeat(String courseId) {
         Course course = findCourseById(courseId);
 
@@ -111,19 +133,45 @@ public class CourseService {
         return course.getEnrolledCount() < course.getMaxCapacity();
     }
 
+    /**
+     * Increases the enrolled count after successful registration.
+     *
+     * @param courseId course ID
+     */
     public void increaseEnrollment(String courseId) {
         Course course = findCourseById(courseId);
 
-        if (course != null) {
+        if (course != null && course.getEnrolledCount() < course.getMaxCapacity()) {
             course.setEnrolledCount(course.getEnrolledCount() + 1);
         }
     }
 
+    /**
+     * Decreases the enrolled count after successful withdrawal.
+     *
+     * @param courseId course ID
+     */
     public void decreaseEnrollment(String courseId) {
         Course course = findCourseById(courseId);
 
         if (course != null && course.getEnrolledCount() > 0) {
             course.setEnrolledCount(course.getEnrolledCount() - 1);
         }
+    }
+
+    /**
+     * Finds a course by course ID.
+     *
+     * @param courseId course ID to search for
+     * @return Course if found, otherwise null
+     */
+    public Course findCourseById(String courseId) {
+        for (Course course : courseList) {
+            if (course.getId().equalsIgnoreCase(courseId)) {
+                return course;
+            }
+        }
+
+        return null;
     }
 }
