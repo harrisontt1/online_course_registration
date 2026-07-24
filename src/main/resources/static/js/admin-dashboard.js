@@ -1,10 +1,10 @@
 /*
- * 
- * Admin Dashboard JavaScript
- * 
+ *
+ * Admin Dashboard 
+ *
  * Allows administrators to add, edit, and delete courses.
- * Students are blocked from this page.
- * 
+ * Students cannot view this page.
+ *
  */
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -23,11 +23,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         event.preventDefault();
 
         const course = {
-            id: document.getElementById("course-id").value,
-            name: document.getElementById("course-name").value,
-            instructor: document.getElementById("course-instructor").value,
+            id: document.getElementById("course-id").value.trim(),
+            name: document.getElementById("course-name").value.trim(),
+            instructor: document.getElementById("course-instructor").value.trim(),
             credits: parseInt(document.getElementById("course-credits").value),
-            meetingTime: document.getElementById("course-meeting-time").value
+            meetingTime: document.getElementById("course-meeting-time").value.trim(),
+            maxCapacity: parseInt(document.getElementById("course-max-capacity").value),
+            enrolledCount: 0,
+            prerequisiteCourseId: document.getElementById("course-prerequisite").value.trim()
         };
 
         const response = await fetch("/api/course", {
@@ -43,7 +46,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             form.reset();
             await loadAdminCourses();
         } else {
-            showAdminMessage("Course could not be saved.", false);
+            showAdminMessage("Course could not be saved. The Course ID may already exist.", false);
         }
     });
 });
@@ -56,6 +59,10 @@ async function loadAdminCourses() {
     tableBody.innerHTML = "";
 
     courses.forEach(course => {
+        const prerequisite = course.prerequisiteCourseId && course.prerequisiteCourseId.trim() !== ""
+            ? course.prerequisiteCourseId
+            : "";
+
         const row = document.createElement("tr");
 
         row.innerHTML = `
@@ -64,6 +71,9 @@ async function loadAdminCourses() {
             <td><input value="${course.instructor}" id="instructor-${course.id}"></td>
             <td><input type="number" value="${course.credits}" id="credits-${course.id}"></td>
             <td><input value="${course.meetingTime}" id="meeting-${course.id}"></td>
+            <td><input type="number" min="1" value="${course.maxCapacity}" id="capacity-${course.id}"></td>
+            <td>${course.enrolledCount}</td>
+            <td><input value="${prerequisite}" id="prerequisite-${course.id}"></td>
             <td>
                 <button onclick="updateCourse('${course.id}')">Update</button>
                 <button onclick="deleteCourse('${course.id}')">Delete</button>
@@ -77,10 +87,12 @@ async function loadAdminCourses() {
 async function updateCourse(courseId) {
     const course = {
         id: courseId,
-        name: document.getElementById(`name-${courseId}`).value,
-        instructor: document.getElementById(`instructor-${courseId}`).value,
+        name: document.getElementById(`name-${courseId}`).value.trim(),
+        instructor: document.getElementById(`instructor-${courseId}`).value.trim(),
         credits: parseInt(document.getElementById(`credits-${courseId}`).value),
-        meetingTime: document.getElementById(`meeting-${courseId}`).value
+        meetingTime: document.getElementById(`meeting-${courseId}`).value.trim(),
+        maxCapacity: parseInt(document.getElementById(`capacity-${courseId}`).value),
+        prerequisiteCourseId: document.getElementById(`prerequisite-${courseId}`).value.trim()
     };
 
     const response = await fetch(`/api/course/${courseId}`, {
