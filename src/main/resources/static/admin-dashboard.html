@@ -45,6 +45,14 @@
                 <input type="text" id="course-meeting-time" required>
             </label>
 
+            <label>Maximum Student Capacity:
+                <input type="number" id="course-max-capacity" min="1" required>
+            </label>
+
+            <label>Prerequisite Course ID:
+                <input type="text" id="course-prerequisite" placeholder="Example: CMSC345 or leave blank">
+            </label>
+
             <button type="submit">Add Course</button>
         </form>
 
@@ -62,6 +70,9 @@
                 <th>Instructor</th>
                 <th>Credits</th>
                 <th>Meeting Time</th>
+                <th>Capacity</th>
+                <th>Enrolled</th>
+                <th>Prerequisite</th>
                 <th>Actions</th>
             </tr>
             </thead>
