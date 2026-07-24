@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.registration.services.RegistrationService;
 import com.example.registration.model.Course;
 import com.example.registration.model.RegistrationRequest;
+import com.example.registration.model.RegistrationResponse;
 
 import java.util.List;
 
@@ -49,10 +50,11 @@ public class RegistrationController {
      * @param req RegistrationRequest containing username and courseId
      * @return true if registration succeeds, false otherwise
      */
-    @PostMapping
-    public boolean register(@RequestBody RegistrationRequest req) {
+   @PostMapping
+    public RegistrationResponse register(@RequestBody RegistrationRequest req) {
         return registrationService.registerStudent(req.getUsername(), req.getCourseId());
     }
+
 
     /**
      * Withdraws a student from a course.
@@ -61,7 +63,7 @@ public class RegistrationController {
      * @return true if withdrawal succeeds, false otherwise
      */
     @DeleteMapping
-    public boolean withdraw(@RequestBody RegistrationRequest req) {
+    public RegistrationResponse withdraw(@RequestBody RegistrationRequest req) {
         return registrationService.withdrawStudent(req.getUsername(), req.getCourseId());
     }
 }
